@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Crimson Hexagon Project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+
+        <script>
+            $(document).ready(function() {
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://www.reddit.com/.json",
+                    dataType: "json",
+                    success: function(reddit) {
+                        //var json = $.parseJSON(data);
+                        console.dir(reddit) ;
+                        //alert(reddit.data.children[0].data.author);
+
+                        for (var i=0; i<=19; i++) {
+                        //$.each(reddit.data.children, function() {
+                            var num = i + 1;
+                            var item = reddit.data.children[i];
+                            var table = '';
+                            table += '<tr>' +
+                                    '<td>' + num + '</td>' +
+                                    '<td>' + item.data.title + '</td>' +
+                                    '<td>' + item.data.url + '</td>' +
+                                    '</tr>';
+
+                            /* for (var term in this.terms) {
+                                table += '<div>' + term + '</div>';
+                                $.each(this.terms[term].instructors, function() {
+                                    table += '<div>Instructor: ' + this + '</div>';
+                                });
+                                $.each(this.terms[term].meet_times, function() {
+                                    table += '<div>Day: ' + TBD(this.week_day) + ' Start time: ' + TBD(this.start_time) +  ' End time: ' + TBD(this.end_time) + ' Building: ' + TBD(this.building) + ' Room: ' + TBD(this.room) +  '</div>';
+                                });
+                            } */
+
+                            //table += '</td></tr><tr class="divide"><td colspan="4"></td></tr>';
+
+                            $('#courses').append(table);
+                        //});
+                        }
+                    }
+                });
+
+            });
+
+        </script>
+    </head>
+
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div>
+            <header>
+                <h1>Top Twenty on Reddit</h1>
+            </header>
+
+            <div id="content">
+                <table id="courses">
+                    <tr>
+                        <th id="c_name">#</th>
+                        <th id="c_title">Title</th>
+                        <th id="c_descrip">Description</th>
+                    </tr>
+                </table>
+            </div>
+
+            <footer>
+                <p>&copy; Copyright  by Justin Bogan</p>
+            </footer>
+        </div>
+
+    </body>
+</html>
